@@ -67,7 +67,6 @@
   do
     echo -e "\n${bold}${cyan}your command:${normal}"
     read answer
-    # TODO: cleanup files
     eval "cat $in_file | $answer > $result_path"
 
     echo -e "\n${bold}${cyan}your result:${normal}"
