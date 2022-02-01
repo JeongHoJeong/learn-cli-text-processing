@@ -19,3 +19,7 @@ inspired by:
 - https://github.com/igrigorik/vimgolf
 
 i made this to study shell scripting and be familiar with *nix utilities. hope you find this helpful too!
+
+## todos
+- [ ] add enough exercises to explore
+- [ ] add preview animated image
