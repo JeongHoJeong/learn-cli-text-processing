@@ -65,7 +65,7 @@
 
   while [[ $has_diff -eq 1 ]];
   do
-    echo -e "\n${bold}${cyan}show your answer:${normal}"
+    echo -e "\n${bold}${cyan}your command:${normal}"
     read answer
     # TODO: cleanup files
     eval "cat $in_file | $answer > $result_path"
