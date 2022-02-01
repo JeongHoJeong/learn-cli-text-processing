@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 {
   function finish {
+    rm $result_path
+    rmdir $result_dir
+
     # Restore screen
     tput rmcup
 
@@ -48,8 +51,9 @@
   # TODO: provide an option to choose an exercise
   echo "exercise_id: $exercise_id"
 
-  # TODO: use system tmp dir
-  result_path=tmp/result
+  # https://unix.stackexchange.com/a/84980
+  result_dir=$(mktemp -d 2>/dev/null || mktemp -d -t 'learn-cli-tp-tmp')
+  result_path=$result_dir/result
 
   echo -e "\n${bold}${cyan}input:${normal}"
   cat $in_file
