@@ -24,3 +24,5 @@ i made this to study shell scripting and be familiar with *nix utilities. hope y
 - [ ] add enough exercises to explore
 - [ ] add preview animated image
 - [ ] add descriptions, hints and answers
+- [ ] support EDITOR
+- [ ] support multi-line command
