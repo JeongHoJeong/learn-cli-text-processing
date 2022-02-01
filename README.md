@@ -23,3 +23,4 @@ i made this to study shell scripting and be familiar with *nix utilities. hope y
 ## todos
 - [ ] add enough exercises to explore
 - [ ] add preview animated image
+- [ ] add descriptions, hints and answers
