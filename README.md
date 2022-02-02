@@ -5,6 +5,13 @@ wip: i'm adding exercises soon.
 just type `./exercise.sh` to start your journey!
 use various command line tricks or anything you can think of *nix utilites to solve exercises.
 
+```bash
+# start with random exercise
+./exercise.sh
+# start with specific exercise you want
+exercise_id=sum.e ./exercise.sh
+```
+
 ## design goals
 
 - fast iteration

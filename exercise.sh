@@ -68,7 +68,7 @@
 
     while [[ $has_diff -eq 1 ]];
     do
-      echo -e "\n${bold}${cyan}your command:${normal}"
+      echo -e "\n${bold}${cyan}your command (type 'pass' if you want):${normal}"
       read answer
 
       if [[ "$answer" == 'pass' ]]; then
