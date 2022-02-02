@@ -45,7 +45,9 @@
   }
 
   get_exercises
-  pick_random_exercise_id
+  if [[ -z $exercise_id ]]; then
+    pick_random_exercise_id
+  fi
   get_io_files
 
   # TODO: provide an option to choose an exercise
