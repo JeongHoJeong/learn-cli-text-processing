@@ -69,7 +69,7 @@
     while [[ $has_diff -eq 1 ]];
     do
       echo -e "\n${bold}${cyan}your command (type 'pass' if you want):${normal}"
-      read answer
+      read -r answer
 
       if [[ "$answer" == 'pass' ]]; then
         break
