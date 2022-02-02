@@ -50,43 +50,56 @@
   fi
   get_io_files
 
-  # TODO: provide an option to choose an exercise
-  echo "exercise_id: $exercise_id"
-
-  # https://unix.stackexchange.com/a/84980
-  result_dir=$(mktemp -d 2>/dev/null || mktemp -d -t 'learn-cli-tp-tmp')
-  result_path=$result_dir/result
-
-  echo -e "\n${bold}${cyan}input:${normal}"
-  cat $in_file
-
-  echo -e "\n${bold}${cyan}output:${normal}"
-  cat $out_file
-
-  has_diff=1
-
-  while [[ $has_diff -eq 1 ]];
+  while true
   do
-    echo -e "\n${bold}${cyan}your command:${normal}"
-    read answer
-    eval "cat $in_file | $answer > $result_path"
+    echo "exercise_id: $exercise_id"
 
-    echo -e "\n${bold}${cyan}your result:${normal}"
-    cat $result_path
+    # https://unix.stackexchange.com/a/84980
+    result_dir=$(mktemp -d 2>/dev/null || mktemp -d -t 'learn-cli-tp-tmp')
+    result_path=$result_dir/result
 
-    echo -e "\n${bold}${cyan}diff:${normal}"
+    echo -e "\n${bold}${cyan}input:${normal}"
+    cat $in_file
 
-    if ! diff $out_file $result_path; then
-      echo -e "\n${red}diff found. try again!${normal}"
-    else
-      # TODO: provide a way to keep doing it
-      echo -e "\n${blue}excellent! no diff found.${normal}"
-      has_diff=0
+    echo -e "\n${bold}${cyan}output:${normal}"
+    cat $out_file
+
+    has_diff=1
+
+    while [[ $has_diff -eq 1 ]];
+    do
+      echo -e "\n${bold}${cyan}your command:${normal}"
+      read answer
+
+      if [[ "$answer" == 'pass' ]]; then
+        break
+      fi
+
+      eval "cat $in_file | $answer > $result_path"
+
+      echo -e "\n${bold}${cyan}your result:${normal}"
+      cat $result_path
+
+      echo -e "\n${bold}${cyan}diff:${normal}"
+
+      if ! diff $out_file $result_path; then
+        echo -e "\n${red}diff found. try again!${normal}"
+      else
+        echo -e "\n${blue}excellent! no diff found.${normal}"
+        has_diff=0
+      fi
+    done
+
+    echo -e '\n'
+    # https://unix.stackexchange.com/a/293941
+    read -n 1 -s -r -p "q: exit, n: next random exercise"
+
+    if [[ "$REPLY" == 'q' ]]; then
+      break
     fi
 
+    clear
+    pick_random_exercise_id
+    get_io_files
   done
-
-  echo -e '\n'
-  # https://unix.stackexchange.com/a/293941
-  read -n 1 -s -r -p "type anything to exit."
 }
